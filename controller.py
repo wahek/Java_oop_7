@@ -1,3 +1,4 @@
+import logger
 import view
 import model
 import parser
@@ -49,18 +50,28 @@ def start():
     choice = view.choice()
     if choice == 1:
         input_first()
+        logger.logger(str(model.get_first()))
         while True:
             input_operation()
+            logger.logger(model.get_operation())
             if model.get_operation() == '=':
                 view.logg_off(model.get_result())
+                logger.logger(str(model.get_result()))
+                logger.log_new_str()
                 break
             input_second()
+            logger.logger(str(model.get_second()))
             solution()
+            logger.logger('=')
+            logger.logger(str(model.get_result()))
+            logger.log_new_str()
+            logger.logger(str(model.get_result()))
     elif choice == 2:
         input_string_cacl()
         model.set_string_calc(parser.parse_space(model.get_string_calc()))
         model.set_operation_list(parser.parse_operation_list(model.get_string_calc()))
         model.set_number_list(parser.parse_num_list(model.get_string_calc()))
-        view.print_to_console(model.operation_list)
-        view.print_to_console(model.get_number_list())
         model.solution_string()
+        view.print_string_calc(model.get_string_calc(), model.get_result())
+        logger.logger_str(model.get_string_calc(), model.get_result())
+        logger.log_new_str()

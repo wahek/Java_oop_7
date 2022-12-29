@@ -101,20 +101,39 @@ def devision():
     if result == int(result):
         result = int(result)
 
-def solution_string():
+
+def solution_string():  # Блок решения строчного выражения, наверное надо было разбить на ещё 4, но как уж сделал
     global number_list
     global operation_list
     global result
-    while number_list != []:
+    while len(number_list) != 1:
+        count = 0
+        num = 0
         for i in range(len(operation_list)):
-            if operation_list[i] == '*':
-                temp = int(number_list[i]) * int(number_list[i + 1])
-                number_list[i] = temp
-                number_list.pop(i + 1)
-            elif operation_list[i] == '/':
-                temp = int(number_list[i]) / int(number_list[i + 1])
-                number_list[i] = temp
-                number_list.pop(i+1)
-        result = number_list
+            if operation_list[i] == '/':
+                temp = float(number_list[i - num]) / float(number_list[i + 1 - num])
+                number_list[i - num] = temp
+                number_list.pop(i + 1 - num)
+                num += 1
+            elif operation_list[i] == '*':
+                temp = float(number_list[i - num]) * float(number_list[i + 1 - num])
+                number_list[i - num] = temp
+                number_list.pop(i + 1 - num)
+                num += 1
+        num = 0
+        for i in range(len(operation_list)):
+            if operation_list[i] == '-':
+                temp = float(number_list[count - num]) - float(number_list[count + 1 - num])
+                number_list[count - num] = temp
+                number_list.pop(count + 1 - num)
+                count += 1
+                num += 1
+            elif operation_list[i] == '+':
+                temp = float(number_list[count - num]) + float(number_list[count + 1 - num])
+                number_list[count - num] = temp
+                number_list.pop(count + 1 - num)
+                count += 1
+                num += 1
+        result = number_list[0]
 
 

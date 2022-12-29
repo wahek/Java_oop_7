@@ -55,3 +55,5 @@ def logg_off(result):
 
 def print_division_zero():
     print('На 0 делить нельзя')
+def print_string_calc(string, result):
+    print(f'{string} = {result}')
