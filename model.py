@@ -1,10 +1,10 @@
-first_number = 0
-second_number = 0
-operation = ''
-result = 0
-string_calc = ''
-number_list = []
-operation_list = []
+__first_number = 0
+__second_number = 0
+__operation = ''
+__result = 0
+__string_calc = ''
+__number_list = []
+__operation_list = []
 
 
 def get_number_list():
